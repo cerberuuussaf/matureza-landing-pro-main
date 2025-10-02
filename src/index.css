@@ -69,6 +69,28 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+  
+  /* ESTE É O BLOCO QUE FALTAVA ADICIONAR */
+  .theme-ametista {
+    --background: 0 0% 98%;
+    --foreground: 270 30% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 270 30% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 30% 16%;
+    --primary: 270 30% 16%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 270 20% 85%;
+    --secondary-foreground: 270 30% 16%;
+    --muted: 270 20% 90%;
+    --muted-foreground: 0 0% 71%;
+    --accent: 45 66% 53%;
+    --accent-foreground: 270 30% 16%;
+    --border: 270 20% 85%;
+    --input: 270 20% 85%;
+    --ring: 45 66% 53%;
+    --radius: 0.5rem;
+  }
 
   .dark {
     /* Same as root for consistent dark theme */
@@ -126,38 +148,3 @@ All colors MUST be HSL.
   .text-gradient-gold {
     @apply bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent;
   }
-
-  .btn-hero {
-    @apply bg-accent text-primary font-semibold px-8 py-4 rounded-sm uppercase tracking-wider;
-    @apply hover:shadow-[0_0_30px_hsl(var(--accent)/0.4)] transition-all duration-300;
-    @apply hover:scale-105 active:scale-95;
-  }
-
-  .btn-ghost {
-    @apply border-2 border-accent text-accent font-semibold px-8 py-3 rounded-sm uppercase tracking-wider;
-    @apply hover:bg-accent hover:text-primary transition-all duration-300;
-  }
-
-  .card-service {
-    @apply bg-card rounded-lg overflow-hidden shadow-lg;
-    @apply hover:shadow-[0_20px_50px_-10px_hsl(var(--accent)/0.3)] transition-all duration-500;
-    @apply hover:-translate-y-2;
-  }
-
-  .section-padding {
-    @apply py-20 px-6 md:py-32 md:px-12;
-  }
-
-  @keyframes blur-fade-in {
-    0% {
-      opacity: 0;
-      filter: blur(20px);
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(0);
-      transform: scale(1);
-    }
-  }
-}

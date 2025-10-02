@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 152 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 152 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 152 100% 50%;
+
+    --radius: 0.75rem;
+    
+    /* Custom tokens for portfolio */
+    --neon-glow: 0 0 20px hsl(152 100% 50% / 0.3);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Custom Design Tokens from Ametista */
+    --amethyst-deep: 270 30% 16%;
+    --lavender-soft: 270 20% 85%;
+    --ice-white: 0 0% 98%;
+    --gold-pale: 45 66% 53%;
+    --text-support: 0 0% 71%;
+
+    /* Gradients from Ametista */
+    --gradient-hero: linear-gradient(135deg, hsl(270 30% 16% / 0.95) 0%, hsl(270 30% 10% / 0.98) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(45 66% 53%) 0%, hsl(40 70% 60%) 100%);
+    
+    /* Shadows from Ametista */
+    --shadow-elegant: 0 10px 40px -10px hsl(270 30% 16% / 0.3);
+    --shadow-glow: 0 0 30px hsl(45 66% 53% / 0.2);
+
+    /* Animations from Ametista */
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as root for consistent dark theme */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Font styles from Ametista */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: radial-gradient(circle at 50% 50%, hsl(152 100% 50% / 0.1) 0%, transparent 50%);
+  }
+  
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+  
+  .card-hover:hover {
+    transform: scale(1.05);
+  }
+  
+  .neon-glow {
+    box-shadow: var(--neon-glow);
+  }
+}
+
+@layer utilities {
+  /* Utilities from Ametista */
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-sans {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent;
+  }
+
+  .btn-hero {
+    @apply bg-accent text-primary font-semibold px-8 py-4 rounded-sm uppercase tracking-wider;
+    @apply hover:shadow-[0_0_30px_hsl(var(--accent)/0.4)] transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply border-2 border-accent text-accent font-semibold px-8 py-3 rounded-sm uppercase tracking-wider;
+    @apply hover:bg-accent hover:text-primary transition-all duration-300;
+  }
+
+  .card-service {
+    @apply bg-card rounded-lg overflow-hidden shadow-lg;
+    @apply hover:shadow-[0_20px_50px_-10px_hsl(var(--accent)/0.3)] transition-all duration-500;
+    @apply hover:-translate-y-2;
+  }
+
+  .section-padding {
+    @apply py-20 px-6 md:py-32 md:px-12;
+  }
+
+  @keyframes blur-fade-in {
+    0% {
+      opacity: 0;
+      filter: blur(20px);
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+    }
+  }
+}

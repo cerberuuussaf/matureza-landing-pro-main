@@ -1,36 +1,38 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from 'react';
 
-export const useScrollReveal = (threshold = 0.1) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+type ScrollRevealOptions = {
+  delay?: number;
+  distance?: string;
+  duration?: number;
+  origin?: 'top' | 'bottom' | 'left' | 'right';
+  easing?: string;
+  scale?: number;
+  reset?: boolean;
+};
+
+export const useScrollReveal = (options: ScrollRevealOptions = {}) => {
+  const elementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Once visible, stop observing
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
-        }
-      },
-      {
-        threshold,
-        rootMargin: "50px",
+    const srPromise = import('scrollreveal');
+    
+    srPromise.then(srModule => {
+      const sr = srModule.default({
+        delay: options.delay || 200,
+        distance: options.distance || '30px',
+        duration: options.duration || 800,
+        origin: options.origin || 'bottom',
+        easing: options.easing || 'ease-in-out',
+        scale: options.scale || 1,
+        reset: options.reset || false,
+      });
+
+      if (elementRef.current) {
+        sr.reveal(elementRef.current);
       }
-    );
+    });
+  }, [options]);
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [threshold]);
-
-  return { ref, isVisible };
+  // Type assertion to inform TypeScript about the ref's type
+  return elementRef as React.RefObject<any>;
 };
